@@ -21,7 +21,7 @@ namespace FamilyTree
                 Gender = Gender.male
             };
 
-            FamilyMembers GrandMother = new FamilyMembers()
+            FamilyMembers GrandMotherOne = new FamilyMembers()
             {
                 FullName = "Петрова Мария Дмитриевна ",
                 Age = 60,
@@ -50,7 +50,7 @@ namespace FamilyTree
                 Age = 35,
                 Gender = Gender.male,
                 Father = GrandFatherOne,
-                Mother = GrandMother
+                Mother = GrandMotherOne
             };
 
             FamilyMembers Son = new FamilyMembers()
@@ -58,15 +58,33 @@ namespace FamilyTree
                 FullName = "Петров Аркадий Кириллович ",
                 Age = 16,
                 Gender = Gender.male,
-                //Mother = Mother,
+                Mother = Mother,
                 Father = Father
             };
 
-            var GrandMothers = Son.GetGrandMotherName();
+            GrandFatherOne.Spouse = GrandMotherOne;
+            GrandMotherOne.Spouse = GrandFatherOne;
+            GrandFatherSecond.Spouse = GrandMotherSecond;
+            GrandMotherSecond.Spouse = GrandFatherSecond;
+            Father.Spouse = Mother;
+            Mother.Spouse = Father;
 
-            Console.WriteLine(GrandMothers[0]?.FullName);
-            Console.WriteLine(GrandMothers[1]?.FullName);
+            // var GrandMothers = Son.GetGrandMotherName();
 
+            // Console.WriteLine(GrandMothers[0]?.FullName);
+            // Console.WriteLine(GrandMothers[1]?.FullName);
+
+            // var relatives = Father.GetCloseRelatives();
+
+            // Console.WriteLine(relatives);
+
+            Son.ShowGrandMothers();
+            Console.WriteLine();
+            Son.ShowGrandFathers();
+            Console.WriteLine();
+
+            Mother.ShowRelatives();
+            Father.ShowRelatives();
         }
 
     }
